@@ -1,0 +1,74 @@
+build.gradle.kts
+plugins {
+    kotlin("jvm") version "1.8.21"
+    application 
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation(kotlin("stdlib"))
+    testImplementation("junit:junit:4.13.2")
+}
+
+application {
+    mainClass.set("com.example.MainKt")
+}
+
+tasks.test {
+    useJUnit() 
+
+    testLogging {
+        events("passed", "failed", "skipped") 
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL 
+        showStandardStreams = true 
+    }
+
+    outputs.upToDateWhen { false }
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+
+
+Main.kt
+package com.example
+
+fun addNumbers(num1: Double, num2: Double): Double {
+    return num1 + num2
+}
+
+fun main() {
+    val num1 = 10.0
+    val num2 = 5.0
+    val result = addNumbers(num1, num2)
+    println("The sum of $num1 and $num2 is: $result")
+}
+
+
+
+MainTest.kt
+package com.example
+
+import org.junit.Assert.*
+import org.junit.Test
+
+class MainTest {
+
+    @Test
+    fun testAddNumbers() {
+        val num1 = 10.0
+        val num2 = 5.0
+        
+        val result = addNumbers(num1, num2)
+
+        assertEquals("The sum of $num1 and $num2 should be 15.0", 15.0, result, 0.001)
+    }
+}
+
