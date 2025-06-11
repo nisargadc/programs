@@ -1,0 +1,8 @@
+program 4
+mvn archetype:generate -DgroupId=com.example -DartifactId=maven-example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn clean install
+mvn exec:java -Dexec.mainClass="com.example.App"
+gradle init
+copy code to build.gradle
+gradlew build
+gradlew run
