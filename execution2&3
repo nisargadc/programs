@@ -1,0 +1,11 @@
+program-2
+mvn compile
+mvn test
+mvn package
+java -cp target/myapp-1.0-SNAPSHOT.jar com.example.App
+
+program-3(grrovy)
+gradle init --type java-application
+gradle build
+gradle run
+gradle test
